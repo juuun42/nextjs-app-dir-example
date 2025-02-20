@@ -1,4 +1,6 @@
 import type { Article } from "./types";
+import ArticleList from "./ArticleList";
+import { Heading } from "./common/components";
 
 async function getArticles() {
   const res = await fetch("http://localhost:3000/api/articles", {
@@ -18,12 +20,10 @@ export default async function Home() {
 
   return (
     <div>
-      <h1>新着記事</h1>
-      <ul>
-        {articles.map((article) => (
-          <li key={article.id}>{article.title}</li>
-        ))}
-      </ul>
+      <Heading as="h1" mb={4}>
+        新着記事
+      </Heading>
+      <ArticleList articles={articles} />
     </div>
   );
 }
